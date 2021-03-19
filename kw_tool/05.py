@@ -1,4 +1,12 @@
-import datetime
-import time
-now = datetime.datetime.strptime("2020-05-15", "%Y-%m-%d")
-print(now,type(now))
+from kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect()
+print("정상접속")
+
+kiwoom.GetConditionLoad()
+#condition = kiwoom.GetConditionNameList()
+#print(condition)
+
+kiwoom.SendCondition("0101", "01_try", "000", 0)
+print(kiwoom.condition_codes)

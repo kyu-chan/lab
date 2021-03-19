@@ -14,6 +14,10 @@ class Kiwoom:
         self.ocx.OnReceiveTrData.connect(self._handler_tr)  ## tr처리, 객체 생성해놔야함
         self.ocx.OnReceiveChejanData.connect(self._handler_chejan)
         self.ocx.OnReceiveMsg.connect(self._handler_msg)
+        self.ocx.OnReceiveConditionVer.connect(self._handler_condition_load)
+        self.ocx.OnReceiveTrCondition.connect(self._handler_tr_condition)
+
+
 
     def GetLoginInfo(self, tag):
         data = self.ocx.dynamicCall("GetLoginInfo(QString)", tag)
@@ -159,6 +163,45 @@ class Kiwoom:
 
     def _handler_msg(self, screen, rqname, trcode, msg):
         print("OnReceiveMsg", screen,rqname,trcode, msg)
-    
+
+    def GetConditionLoad(self):     ##조건식 받아오기
+        self.ocx.dynamicCall("GetConditionLoad()")
+        ##사용자 조건식 저장 이벤트까지 대기
+        self.condition_load_loop = QEventLoop()
+        self.condition_load_loop.exec()
+
+    def _handler_condition_load(self, ret, msg):   ##조건식 객체와 연결, 프린트
+        print("OnReceiveConditionVer: ", ret, msg)
+        self.condition_load_loop.exit()
+
+    def GetConditionNameList(self):   ##조건식 목록 불러오기
+        data = self.ocx.dynamicCall("GetConditionNameList()")
+        conditions = data.split(";")[:-1]  ##끝이 공백이 나와서 제거함
+
+        ret = []
+        for condition in conditions:
+            index, name = condition.split('^')
+            ret.append((index, name))   ##튜플로 정리
+
+        return ret
+
+    def SendCondition(self, screen, cond_name, cond_index, search):   ##조건검색 조회
+        ret = self.ocx.dynamicCall("SendCondition(QString,QString,int,int)",screen, cond_name, cond_index, search)
+        # 이벤트루프
+        ## 서버와 나의 상호작용 메카니즘을 생각하며 코딩하자
+        self.condition_tr_loop = QEventLoop()
+        self.condition_tr_loop.exec()
+
+    def _handler_tr_condition(self, screen, codelist, cond_name, cond_index, next):
+        codes = codelist.split(';')
+        self.condition_codes = codes[:-1]
+        ##이벤트루프 종료
+        self.condition_tr_loop.exit()
+
+#################################
+####자동주문 시간설정, 종목 선정 -> 코드화시켜 엑셀로, 종목리스트 읽고 지정 시간에 주문
+####윈도우 자동스케쥴러 이용?
+
+
 
 app = QApplication(sys.argv)
