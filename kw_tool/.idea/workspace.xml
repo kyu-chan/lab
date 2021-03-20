@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fed2eba-7bad-4998-9c7e-3d38341afa33" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Basic_final/kiwoom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Basic_final/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Basic_final/PyTrade.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Basic_final/PyTrade.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Basic_final/Pymonin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Basic_final/Pymonin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Data_gathering/Selenium_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Data_gathering/kiwoom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Data_gathering/test_scrap.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Basic_final" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.win_test">
